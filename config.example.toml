@@ -1,0 +1,19 @@
+# Copy to config.dev.toml (or ~/.config/libvirt-mcp/config.toml) and edit.
+# Each profile is a libvirt connection URI. The `default_profile` is used
+# when a tool is called without a `profile` argument.
+
+default_profile = "primary"
+
+[profiles.primary]
+uri = "qemu+ssh://user@hypervisor.example.com/system"
+description = "Primary KVM hypervisor"
+
+# Add as many profiles as you need. Examples:
+#
+# [profiles.lab-a]
+# uri = "qemu+ssh://admin@lab-a.internal/system"
+# description = "Lab A — security/network experiments"
+#
+# [profiles.local]
+# uri = "qemu:///system"
+# description = "Local libvirt (when MCP runs on the hypervisor itself)"

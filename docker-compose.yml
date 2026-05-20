@@ -1,0 +1,21 @@
+services:
+  dev:
+    build:
+      context: .
+      args:
+        UID: "${UID:-1000}"
+        GID: "${GID:-1000}"
+    image: libvirt-mcp:dev
+    container_name: libvirt-mcp-dev
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+      - ${HOME}/.ssh:/home/ubuntu/.ssh:ro
+    environment:
+      # /workspace bind shadows the installed package so edits take effect live.
+      - PYTHONPATH=/workspace
+      - LIBVIRT_MCP_CONFIG=/workspace/config.dev.toml
+    stdin_open: true
+    tty: true
+    network_mode: host
+    command: bash
